@@ -1,10 +1,12 @@
 // Constants
-export const MAPTILER_API_KEY = "VqwpCTRfiFiP9uoi9Vkz"
+export const MAPTILER_API_KEY = process.env.NEXT_PUBLIC_MAPTILER_API_KEY
+export const MAPTILER_BASE_URL = process.env.NEXT_PUBLIC_MAPTILER_BASE_URL
 export const EARTH_RADIUS_METERS = 6371000
+export const MAP_STARTING_COORDS = [88.345714, 22.579661]
+export const MAP_INITIAL_ZOOM_LEVEL = 16
 
-/**
- * Calculates the distance between two coordinates using the Haversine formula
- */
+
+// Calculates the distance between two coordinates using the Haversine formula
 export const calculateDistance = (coord1: [number, number], coord2: [number, number]): number => {
   const [lon1, lat1] = coord1
   const [lon2, lat2] = coord2
@@ -23,9 +25,8 @@ export const calculateDistance = (coord1: [number, number], coord2: [number, num
   return EARTH_RADIUS_METERS * c
 }
 
-/**
- * Calculates the area of a polygon given its coordinates
- */
+
+// Calculates the area of a polygon given its coordinates
 export const calculateArea = (coords: [number, number][]): number => {
   let area = 0
   for (let i = 0; i < coords.length - 1; i++) {
@@ -34,9 +35,8 @@ export const calculateArea = (coords: [number, number][]): number => {
   return Math.abs(area) / 2
 }
 
-/**
- * Formats a distance value to a human-readable string
- */
+
+// Formats a distance value to a human-readable string
 export const formatDistance = (distance: number | null): string => {
   if (distance === null) return "-"
   return distance >= 1000
